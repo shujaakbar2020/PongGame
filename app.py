@@ -25,6 +25,13 @@ class PongGame(Widget):
         # moving the ball by using move() and other stuff
         self.ball.move()
 
+        #bounce of top and bottom
+        if (self.ball.y < 0) or (self.ball.y>self.height):
+            self.ball.velocity_y *= -1
+        #bounce of left and right
+        if (self.ball.x < 0) or (self.ball.x>self.width):
+            self.ball.velocity_x *= -1
+
 
 class PongApp(App):
     def build(self):
