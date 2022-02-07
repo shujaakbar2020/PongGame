@@ -8,7 +8,9 @@ from random import randint
 
 
 class PongPaddle(Widget):
-    pass
+    def bounce_ball(self, ball):
+        if self.collide_widget(ball):
+            ball.velocity_x *=-1.2
 
 
 class PongBall(Widget):
@@ -38,6 +40,9 @@ class PongGame(Widget):
         #bounce of left and right
         if (self.ball.x < 0) or (self.ball.x>self.width-50):
             self.ball.velocity_x *= -1
+        
+        self.player1.bounce_ball(self.ball)
+        self.player2.bounce_ball(self.ball)
     
     def on_touch_move(self, touch):
         if touch.x < self.width/ 1/4:
